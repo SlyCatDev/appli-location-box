@@ -5,7 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Reservation extends Model
+class Box extends Model
 {
     use HasFactory;
+
+    protected $table = 'boxes';
+
+    protected $fillable = [
+        'nom_locataire',
+        'numero_box',
+    ];
 }
+

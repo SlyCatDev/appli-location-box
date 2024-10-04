@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="en">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -12,7 +12,7 @@
     </head>
     <body>
 
-    <h2>Liste des réservations de box de stockage</h2>
+    <h2>Liste des box de stockage</h2>
         <table>
             <thead>
                 <tr>
@@ -22,11 +22,11 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($reservations as $reservation)
+               @foreach ($boxes as $box)
                 <tr>
-                    <td>{{ $reservation->id }}</td>
-                    <td>{{ $reservation->nom_locataire }}</td>
-                    <td>{{ $reservation->numero_box }}</td>
+                    <td>{{ $box->id }}</td>
+                    <td>{{ $box->nom_locataire }}</td>
+                    <td>{{ $box->numero_box }}</td>
                 </tr>
                 @endforeach
             </tbody>

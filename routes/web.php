@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ReservationController;
+use App\Http\Controllers\BoxController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -18,8 +18,6 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('/controller', function () {
-    return view('controller');
-});
+Route::get('/box',[BoxController::class, 'showBox'])->name('box.show');
 
 require __DIR__.'/auth.php';
