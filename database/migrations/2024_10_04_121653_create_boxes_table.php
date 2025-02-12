@@ -6,22 +6,17 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::create('boxes', function (Blueprint $table) {
             $table->id();
-            $table->string('nom_locataire');
-            $table->integer('numero_box');
+            $table->string('name');
+            $table->string('contenu')->nullable();
+            $table->foreignId('user_id')->constrained('users')->onDelete('set null');
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('boxes');
