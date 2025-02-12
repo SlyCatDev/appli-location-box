@@ -27,11 +27,11 @@ class BoxFactory extends Factory
             // Génère un identifiant unique automatiquement
             'id' => fake()->unique()->randomNumber(),
             
-            // Génère un nom de locataire aléatoire
-            'nom_locataire' => fake()->name(),
-            
-            // Génère un numéro de box aléatoire, ici entre 1 et 100
-            'numero_box' => 'Box ' . fake()->numberBetween(1, 100),
+            // Génère un nom de box
+            'name' => fake()->name(),
+
+            // Génère une string random
+            'contenu' => str()->random(),
         ];
     }
 }
