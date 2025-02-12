@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -21,6 +20,12 @@ class User extends Authenticatable
         'email',
         'password',
     ];
+
+    public function as()
+    {
+        # la relation inverse se déclare grace a la méthode "hasMany", qui ne prend cette fois en paramètre, que le nom du model "A"
+        return $this->hasMany(Box::class);
+    }
 
     /**
      * The attributes that should be hidden for serialization.
