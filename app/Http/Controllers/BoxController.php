@@ -10,10 +10,10 @@ class BoxController extends Controller
 {
     public function showBox()
     {
-        // Récupérer toutes les réservations
+        // Récupérer toutes les box
         $boxes = Box::all();
         
-        // Passer les réservations à la vue
+        // Passer les box à la vue
         return view('boxes', ['boxes' => $boxes]);
     }
 
