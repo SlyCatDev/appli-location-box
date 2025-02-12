@@ -12,7 +12,7 @@
     </head>
     <body>
 
-    <h2>Créer une box</h2>
+    <h1>Créer une box</h1>
     <form action="boxes.blade.php" method="post">
         <input name="nom" type="text"/>
         <label>Votre nom</label>
