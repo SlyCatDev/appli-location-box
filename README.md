@@ -1,5 +1,12 @@
 # appli-location-box
 
+## Logs de connexion par defaut
+
+Email :test@test.com
+Password :password
+
+-----------------
+
 Réalisation d'une application de gestion de locations de box de stockage à destination des propriétaires. Les locataires n'ont aucune connaissance de cet outil 😶‍🌫️ .
 
 ## Les fonctionnalités
