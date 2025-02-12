@@ -7,8 +7,6 @@ use App\Models\User;
 use Illuminate\Database\Seeder;
 use App\Models\Box;
 
-Contract
-
 class DatabaseSeeder extends Seeder
 {
     /**
