@@ -6,11 +6,11 @@ use App\Models\Box;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Reservation>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Box>
  */
 class BoxFactory extends Factory
 {
-        // Indique que ce factory est pour le modèle Reservation
+        // Indique que ce factory est pour le modèle Box
         protected $model = Box::class;
     
         /**
@@ -24,14 +24,9 @@ class BoxFactory extends Factory
     public function definition(): array
     {
         return [
-            // Génère un identifiant unique automatiquement
-            'id' => fake()->unique()->randomNumber(),
-            
-            // Génère un nom de box
-            'name' => fake()->name(),
-
-            // Génère une string random
+            'name' => $this->faker->name(),
             'contenu' => str()->random(),
+            'user_id' => fake()->unique()->numberBetween(1, 10),
         ];
     }
 }
