@@ -16,6 +16,10 @@
             <label for="contenu">Contenu :</label>
             <textarea name="contenu" class="form-control"></textarea>
         </div>
+        <div class="form-group">
+            <label for="contenu">Prix :</label>
+            <textarea name="price" class="form-control"></textarea>
         <button type="submit" class="btn btn-success">Appliquer la modification</button>
+        <a href="{{ route('boxes.index') }}" class="btn btn-secondary">Retour</a>
     </form>
 </x-app-layout>
