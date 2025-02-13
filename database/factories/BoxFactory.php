@@ -25,8 +25,9 @@ class BoxFactory extends Factory
     {
         return [
             'name' => $this->faker->name(),
-            'contenu' => str()->random(),
-            'user_id' => fake()->unique()->numberBetween(1, 10),
+            'contenu' => $this->faker->sentence(),
+            'price' => $this->faker->randomFloat(2, 1, 1000),
+            'owner_id' => \App\Models\User::factory(),
         ];
     }
 }
