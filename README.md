@@ -3,7 +3,7 @@
 ## Logs de connexion par defaut
 
 Email :test@test.com
-Password :password
+Password :gwN6ELwwY4ZmqFi
 
 -----------------
 
