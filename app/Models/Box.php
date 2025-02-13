@@ -12,9 +12,9 @@ class Box extends Model
     protected $table = 'boxes';
 
     protected $fillable = [
+        'id',
         'name',
         'contenu',
-        'numero_box',
         'user_id'
     ];
     public function user()
