@@ -32,7 +32,8 @@ class BoxController extends Controller
         $box->user_id = Auth::id();
         $box->save();
 
-        return redirect()->route('boxes.index')->with('success', 'Box created successfully.');
+        return redirect()->route('boxes.index')
+            ->with('success', 'Box created successfully.');
     }
 
     public function show(Box $box)
@@ -53,13 +54,15 @@ class BoxController extends Controller
         ]);
 
         $box->update($request->all());
-        return redirect()->route('boxes.index')->with('success', 'Box updated successfully.');
+        return redirect()->route('boxes.index')
+            ->with('success', 'Box updated successfully.');
     }
 
     public function destroy(Box $box)
     {
         $box->delete();
-        return redirect()->route('boxes.index')->with('success', 'Box deleted successfully.');
+        return redirect()->route('boxes.index')
+            ->with('success', 'Box deleted successfully.');
     }
 }
 
