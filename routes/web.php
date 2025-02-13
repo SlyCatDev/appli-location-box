@@ -28,4 +28,14 @@ Route::middleware('auth')->prefix('/boxes')->group(function () {
     Route::delete('/{box}', [BoxController::class, 'destroy'])->name('boxes.destroy');
 });
 
+Route::middleware('auth')->prefix('/tenants')->group(function () {
+    Route::get('/', [BoxController::class, 'index'])->name('tenants.index');
+    Route::get('/create', [BoxController::class, 'create'])->name('tenants.create');
+    Route::post('/', [BoxController::class, 'store'])->name('tenants.store');
+    Route::get('/{tenant}', [BoxController::class, 'show'])->name('tenants.show');
+    Route::get('/{tenant}/edit', [BoxController::class, 'edit'])->name('tenants.edit');
+    Route::put('/{tenant}/update', [BoxController::class, 'update'])->name('tenants.update');
+    Route::delete('/{tenant}', [BoxController::class, 'destroy'])->name('tenants.destroy');
+});
+
 require __DIR__.'/auth.php';
