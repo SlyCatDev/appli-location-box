@@ -12,7 +12,8 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('contenu')->nullable();
-            $table->foreignId('user_id')->constrained('users')->onDelete('set null');
+            $table->decimal('price', 8, 2);
+            $table->foreignId('owner_id')->constrained('users')->onDelete('set null');
             $table->timestamps();
         });
     }
