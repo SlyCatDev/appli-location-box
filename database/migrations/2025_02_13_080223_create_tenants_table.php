@@ -14,11 +14,12 @@ return new class extends Migration
         Schema::create('tenants', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('telephone');
+            $table->string('phone');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('address');
-            $table->string('RIB');
+            $table->string('bank_account');
+            // $table->foreignId('data_owner_id')->constrained('contracts')->onDelete('set null');
             $table->timestamps();
         });
     }
