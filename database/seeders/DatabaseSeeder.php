@@ -6,6 +6,7 @@ use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Box;
+use App\Models\Tenant;
 
 class DatabaseSeeder extends Seeder
 {
@@ -16,7 +17,8 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
-        User::factory()->create();
-        Box::factory()->create();
+        User::factory(10)->create();
+        Box::factory(10)->create();
+        Tenant::factory(10)->create();
     }
 }
