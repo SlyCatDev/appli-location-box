@@ -13,9 +13,16 @@ class Tenant extends Model
 
     protected $fillable = [
         'name',
-        'telephone',
+        'phone',
         'email',
         'address',
-        'RIB'
+        'bank_account',
+        // 'data_owner_id'
     ];
+
+    // faire une relation avec contract
+    // public function contracts()
+    // {
+    //     return $this->hasMany(Contract::class);
+    // }
 }

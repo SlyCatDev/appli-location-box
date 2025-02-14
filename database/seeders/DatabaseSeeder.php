@@ -8,6 +8,8 @@ use Illuminate\Database\Seeder;
 use App\Models\Box;
 use App\Models\Tenant;
 
+use function Laravel\Prompts\password;
+
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -17,7 +19,13 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
-        User::factory(10)->create();
+        User::factory()->create([
+            'email' => 'sylvain.test@test.com',
+            'password' => 'password',
+        ]);
+        User::factory(10)->create([
+            'password' => 'password',
+        ]);
         Box::factory(10)->create();
         Tenant::factory(10)->create();
     }

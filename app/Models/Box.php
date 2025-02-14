@@ -12,14 +12,14 @@ class Box extends Model
     protected $table = 'boxes';
 
     protected $fillable = [
-        'id',
         'name',
         'contenu',
-        'user_id'
+        'price',
+        'owner_id'
     ];
-    public function user()
+    public function owner()
     {
         # BelongsTo doit prendre en premier paramètre le nom du model A, puis en second paramètre, le nom du champs dans le modèle courant lié avec le model A grâce à sa foreign key
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'owner_id');
     }
 }
