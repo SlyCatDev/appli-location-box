@@ -20,7 +20,7 @@
                         @csrf
 
                         <div class="mb-3">
-                            <label for="name" class="form-label">Nom</label>
+                            <label for="name" class="form-label">Nom :</label>
                             <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" value="{{ old('name') }}" required>
                             @error('name')
                                 <span class="invalid-feedback">{{ $message }}</span>
@@ -51,6 +51,14 @@
                             @enderror
                         </div>
 
+                        <div class="mb-3">
+                            <label for="bank_account" class="form-label">IBAN :</label>
+                            <textarea class="form-control @error('bank_ account') is-invalid @enderror" id="bank_account" name="bank_account" rows="3">{{ old('bank_account') }}</textarea>
+                            @error('bank_account')
+                                <span class="invalid-feedback">{{ $message }}</span>
+                            @enderror
+                        </div>
+
                         <div class="d-grid gap-2">
                             <button type="submit" class="btn btn-primary">Ajouter</button>
                             <a href="{{ route('tenants.index') }}" class="btn btn-secondary">Retour</a>
@@ -61,4 +69,5 @@
         </div>
     </div>
 </div>
+</x-app-layout>
 {{-- @endsection --}}
