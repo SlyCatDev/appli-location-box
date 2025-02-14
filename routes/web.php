@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BoxController;
+use App\Http\Controllers\TenantController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -29,13 +30,13 @@ Route::middleware('auth')->prefix('/boxes')->group(function () {
 });
 
 Route::middleware('auth')->prefix('/tenants')->group(function () {
-    Route::get('/', [BoxController::class, 'index'])->name('tenants.index');
-    Route::get('/create', [BoxController::class, 'create'])->name('tenants.create');
-    Route::post('/', [BoxController::class, 'store'])->name('tenants.store');
-    Route::get('/{tenant}', [BoxController::class, 'show'])->name('tenants.show');
-    Route::get('/{tenant}/edit', [BoxController::class, 'edit'])->name('tenants.edit');
-    Route::put('/{tenant}/update', [BoxController::class, 'update'])->name('tenants.update');
-    Route::delete('/{tenant}', [BoxController::class, 'destroy'])->name('tenants.destroy');
+    Route::get('/', [TenantController::class, 'index'])->name('tenants.index');
+    Route::get('/create', [TenantController::class, 'create'])->name('tenants.create');
+    Route::post('/', [TenantController::class, 'store'])->name('tenants.store');
+    Route::get('/{tenant}', [TenantController::class, 'show'])->name('tenants.show');
+    Route::get('/{tenant}/edit', [TenantController::class, 'edit'])->name('tenants.edit');
+    Route::put('/{tenant}/update', [TenantController::class, 'update'])->name('tenants.update');
+    Route::delete('/{tenant}', [TenantController::class, 'destroy'])->name('tenants.destroy');
 });
 
 require __DIR__.'/auth.php';
