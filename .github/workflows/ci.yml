@@ -1,13 +1,18 @@
 name: CI
 
-on: [push]
+on:
+  push:
+    branches:
+      - main
 
 jobs:
   deploy:
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v2
+
       - name: Push to server
         uses: appleboy/ssh-action@master
         with:
@@ -15,5 +20,8 @@ jobs:
           username: ${{ secrets.SERVER_USERNAME }}
           password: ${{ secrets.SERVER_PASSWORD }}
           script: |
+            echo "Starting deployment..."
             cd ${{ secrets.PROJECT_PATH }}
+            echo "Pulling latest changes from GitHub..."
             git pull
+            echo "Deployment completed."
