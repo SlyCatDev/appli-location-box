@@ -56,6 +56,7 @@ class BoxController extends Controller
         ]);
 
         $box->update($request->all());
+
         return redirect()->route('boxes.index')
             ->with('success', 'Box updated successfully.');
     }
@@ -63,6 +64,7 @@ class BoxController extends Controller
     public function destroy(Box $box)
     {
         $box->delete();
+        
         return redirect()->route('boxes.index')
             ->with('success', 'Box deleted successfully.');
     }

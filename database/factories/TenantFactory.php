@@ -18,10 +18,10 @@ class TenantFactory extends Factory
     {
         return [
             'name' => $this->faker->name(),
-            'phone' => $this->faker->phoneNumber(),
+            'phone' => $this->faker->phoneNumber('FR'),
             'email' => $this->faker->unique()->safeEmail(),
             'email_verified_at' => now(),
-            'address' => $this->faker->address(),
+            'address' => $this->faker->address('FR'),
             'bank_account' => $this->faker->iban('FR'),
             // 'data_owner_id' => 1
         ];
