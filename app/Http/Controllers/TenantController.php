@@ -56,14 +56,11 @@ class TenantController extends Controller
             'bank_account' => 'required|string'
         ]);
 
-        // dd('test');
-
         $tenant->name = $request->name;
         $tenant->email = $request->email;
         $tenant->phone = $request->phone;
         $tenant->address = $request->address;
         $tenant->bank_account = $request->bank_account;
-        
         $tenant->save();
 
         return redirect()->route('tenants.index')
