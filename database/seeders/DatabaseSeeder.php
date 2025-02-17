@@ -7,8 +7,9 @@ use App\Models\User;
 use Illuminate\Database\Seeder;
 use App\Models\Box;
 use App\Models\Tenant;
+use App\Models\ContractModel;
 
-use function Laravel\Prompts\password;
+// use function Laravel\Prompts\password;
 
 class DatabaseSeeder extends Seeder
 {
@@ -28,5 +29,7 @@ class DatabaseSeeder extends Seeder
         ]);
         Box::factory(10)->create();
         Tenant::factory(10)->create();
+        ContractModel::factory()->create();
+
     }
 }
