@@ -21,7 +21,7 @@
             <!-- Create the editor container -->
             <div id="editor"></div>
     
-            <!-- Champ caché pour le JSON généré par Editor.js -->
+            <!-- Champ caché pour le JSON généré par l'éditeur-->
             <input type="hidden" name="content" id="content">
 
             @error('content')
@@ -32,18 +32,17 @@
         </form>
     </div>
 
-<!-- Include the Quill library -->
-<script src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.js"></script>
+    <!-- Include the Quill library -->
+    <script src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.js"></script>
 
-<!-- Initialize Quill editor -->
-<script>
-  const quill = new Quill('#editor', {
-    theme: 'snow'
-  });
-    document.getElementById('editor-form').addEventListener('submit', function (e) {
-            const content = document.getElementById('content');
-            content.value = quill.root.innerHTML;
-          });
-</script>
-
+    <!-- Initialize Quill editor -->
+    <script>
+    const quill = new Quill('#editor', {
+        theme: 'snow'
+    });
+        document.getElementById('editor-form').addEventListener('submit', function (e) {
+                const content = document.getElementById('content');
+                content.value = quill.root.innerHTML;
+            });
+    </script>
 </x-app-layout>

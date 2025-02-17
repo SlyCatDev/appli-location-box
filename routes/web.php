@@ -5,6 +5,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BoxController;
 use App\Http\Controllers\TenantController;
 use App\Http\Controllers\ContractModelController;
+use App\Http\Controllers\ContractController;
+use App\Http\Controllers\BillController;
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -44,10 +47,29 @@ Route::middleware('auth')->prefix('/contract_models')->group(function () {
     Route::get('/', [ContractModelController::class, 'index'])->name('contract_models.index');
     Route::get('/create', [ContractModelController::class, 'create'])->name('contract_models.create');
     Route::post('/', [ContractModelController::class, 'store'])->name('contract_models.store');
+    Route::post('/{contract_model}/generate', [ContractModelController::class, 'generate'])->name('contract_models.generate');
     Route::get('/{contract_model}', [ContractModelController::class, 'show'])->name('contract_models.show');
     Route::get('/{contract_model}/edit', [ContractModelController::class, 'edit'])->name('contract_models.edit');
     Route::put('/{contract_model}/update', [ContractModelController::class, 'update'])->name('contract_models.update');
+    Route::get('/{contract_model}/prepare', [ContractModelController::class, 'prepareGeneration'])->name('contract_models.prepare');
     Route::delete('/{contract_model}', [ContractModelController::class, 'destroy'])->name('contract_models.destroy');
+});
+
+Route::middleware('auth')->prefix('/contracts')->group(function () {
+    Route::get('/', [ContractController::class, 'index'])->name('contracts.index');
+    Route::get('/create', [ContractController::class, 'create'])->name('contracts.create');
+    Route::post('/', [ContractController::class, 'store'])->name('contracts.store');
+    Route::get('/{contract}', [ContractController::class, 'show'])->name('contracts.show');
+    Route::get('/{contract}/edit', [ContractController::class, 'edit'])->name('contracts.edit');
+    Route::put('/{contract}/update', [ContractController::class, 'update'])->name('contracts.update');
+    Route::delete('/{contract}', [ContractController::class, 'destroy'])->name('contracts.destroy');
+});
+
+Route::middleware('auth')->prefix('/bills')->group(function () {
+    Route::get('/', [BillController::class, 'index'])->name('bills.index');
+    Route::get('/create', [BillController::class, 'create'])->name('bills.create');
+    Route::post('/', [BillController::class, 'store'])->name('bills.store');
+    Route::delete('/{bill}', [BillController::class, 'destroy'])->name('bills.destroy');
 });
 
 require __DIR__.'/auth.php';

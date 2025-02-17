@@ -27,6 +27,8 @@ class BoxController extends Controller
             'name' => 'required|string|max:255',
             'contenu' => 'nullable|string',
             'price' => 'required|numeric',
+            'owner_id' => 'required',
+
         ]);
 
         $box = new Box($request->all());
@@ -53,9 +55,14 @@ class BoxController extends Controller
             'name' => 'required|string|max:255',
             'contenu' => 'nullable|string',
             'price' => 'required|numeric',
+            'owner_id' => 'required',
         ]);
 
-        $box->update($request->all());
+        $box->name = $request->name;
+        $box->contenu = $request->contenu;
+        $box->price = $request->price;
+        $box->owner_id = $request->owner_id;
+        $box->save();
 
         return redirect()->route('boxes.index')
             ->with('success', 'Box updated successfully.');
