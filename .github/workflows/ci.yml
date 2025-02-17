@@ -24,4 +24,6 @@ jobs:
             cd ${{ secrets.PROJECT_PATH }}
             echo "Pulling latest changes from GitHub..."
             git pull
+            echo "Running migrations..."
+            php artisan migrate --force
             echo "Deployment completed."
