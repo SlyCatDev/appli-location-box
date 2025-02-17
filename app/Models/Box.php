@@ -15,7 +15,7 @@ class Box extends Model
         'name',
         'contenu',
         'price',
-        'owner_id'
+        'owner_id',
     ];
     public function owner()
     {
