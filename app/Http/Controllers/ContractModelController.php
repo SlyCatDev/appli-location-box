@@ -20,12 +20,15 @@ class ContractModelController extends Controller
 
     public function store(Request $request)
     {
-        $data = $request->input('blocks');
+        // Valide que le nom et le delta JSON sont présents
+        $request->validate([
+            'name'    => 'required|string|max:255',
+            'content' => 'required|string', // Attendu en JSON
+        ]);
 
-        // Sauvegarder les données JSON dans la base de données
         $contractModel = new ContractModel();
         $contractModel->name    = $request->name;
-        $contractModel->content = json_encode($data);
+        $contractModel->content = $request->content;
         $contractModel->user_id = auth()->id();
         $contractModel->save();
 
@@ -33,22 +36,14 @@ class ContractModelController extends Controller
             ->with('success', 'Model created successfully');
     }
 
-    public function show(ContractModel $contractModel, array $replacements)
+    public function show(ContractModel $contractModel)
     {
-        $content = $contractModel->content;
-
-        // Remplacer les variables par les valeurs réelles
-        foreach ($replacements as $key => $value) {
-            $content = str_replace("{{ $key }}", $value, $content);
-        }
-
-        // Retourner le contenu du contrat généré
-        return view('contracts.show', ['content' => $content]);
+        return view('contract_models.show', ['contractModel' => $contractModel]);
     }
 
     public function edit(ContractModel $contractModel)
     {
-        return view('contract_models.edit', ['contract_model' => $contractModel]);
+        return view('contract_models.edit', ['contractModel' => $contractModel]);
     }
 
     public function update(Request $request, ContractModel $contractModel)

@@ -44,7 +44,6 @@ Route::middleware('auth')->prefix('/contract_models')->group(function () {
     Route::get('/', [ContractModelController::class, 'index'])->name('contract_models.index');
     Route::get('/create', [ContractModelController::class, 'create'])->name('contract_models.create');
     Route::post('/', [ContractModelController::class, 'store'])->name('contract_models.store');
-    // Route::post('/save', [ContractModelController::class, 'save'])->name('contract_models.save');
     Route::get('/{contract_model}', [ContractModelController::class, 'show'])->name('contract_models.show');
     Route::get('/{contract_model}/edit', [ContractModelController::class, 'edit'])->name('contract_models.edit');
     Route::put('/{contract_model}/update', [ContractModelController::class, 'update'])->name('contract_models.update');

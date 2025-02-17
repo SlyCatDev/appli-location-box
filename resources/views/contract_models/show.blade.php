@@ -5,16 +5,10 @@
         </h2>
     </x-slot>
 
-{{-- @extends('layouts.app') --}}
-
-{{-- @section('content') --}}
-
-<div class="container">
-    <div class="contract-content">
-        {!! $content !!}
+    <div class="container">
+        <div class="contract-content">
+            {!! $contractModel->content !!}
+        </div>
+        <a href="{{ route('contract_models.index') }}">Retour à la liste</a>
     </div>
-    <a href="{{ route('contract_models.index') }}">Retour à la liste</a>
-</div>
-
-
-{{-- @endsection --}}
+</x-app-layout>
