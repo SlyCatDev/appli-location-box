@@ -10,37 +10,37 @@
 {{-- @section('title', 'Create New Box') --}}
 
 {{-- @section('content') --}}
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
 
-                <div class="card-body">
-                    <form action="{{ route('boxes.store') }}" method="POST">
-                    @csrf
+                    <div class="card-body">
+                        <form action="{{ route('boxes.store') }}" method="POST">
+                        @csrf
 
-                    <div class="form-group">
-                        <label for="name">Nom : </label>
-                        <input type="text" name="name" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="contenu">Contenu :</label>
-                        <textarea name="contenu" class="form-control"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="contenu">Prix :</label>
-                        <textarea name="price" class="form-control"></textarea>
-                    </div>
+                        <div class="form-group">
+                            <label for="name">Nom : </label>
+                            <input type="text" name="name" class="form-control" required autofocus>
+                        </div>
+                        <div class="form-group">
+                            <label for="contenu">Contenu :</label>
+                            <textarea name="contenu" class="form-control"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="contenu">Prix :</label>
+                            <textarea name="price" class="form-control"></textarea>
+                        </div>
 
-                    <div class="d-grid gap-2">
-                        <button type="submit" class="btn btn-success">Ajouter</button>
-                        <a href="{{ route('boxes.index') }}" class="btn btn-secondary">Retour</a>
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-success">Ajouter</button>
+                            <a href="{{ route('boxes.index') }}" class="btn btn-secondary">Retour</a>
+                        </div>
+                        </form>
                     </div>
-                    </form>
                 </div>
             </div>
         </div>
     </div>
-</div>
 </x-app-layout>
 {{-- @endsection --}}

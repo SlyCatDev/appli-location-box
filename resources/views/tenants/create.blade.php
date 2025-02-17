@@ -21,7 +21,7 @@
 
                         <div class="mb-3">
                             <label for="name" class="form-label">Nom :</label>
-                            <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" value="{{ old('name') }}" required>
+                            <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" required>
                             @error('name')
                                 <span class="invalid-feedback">{{ $message }}</span>
                             @enderror
@@ -29,7 +29,7 @@
 
                         <div class="mb-3">
                             <label for="email" class="form-label">Email :</label>
-                            <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email" value="{{ old('email') }}" required>
+                            <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email" required>
                             @error('email')
                                 <span class="invalid-feedback">{{ $message }}</span>
                             @enderror
@@ -37,7 +37,7 @@
 
                         <div class="mb-3">
                             <label for="phone" class="form-label">Téléphone :</label>
-                            <input type="tel" class="form-control @error('phone') is-invalid @enderror" id="phone" name="phone" value="{{ old('phone') }}">
+                            <input type="tel" class="form-control @error('phone') is-invalid @enderror" id="phone" name="phone">
                             @error('phone')
                                 <span class="invalid-feedback">{{ $message }}</span>
                             @enderror
@@ -45,7 +45,7 @@
 
                         <div class="mb-3">
                             <label for="address" class="form-label">Addresse :</label>
-                            <textarea class="form-control @error('address') is-invalid @enderror" id="address" name="address" rows="3">{{ old('address') }}</textarea>
+                            <textarea class="form-control @error('address') is-invalid @enderror" id="address" name="address" rows="3"></textarea>
                             @error('address')
                                 <span class="invalid-feedback">{{ $message }}</span>
                             @enderror
@@ -53,7 +53,7 @@
 
                         <div class="mb-3">
                             <label for="bank_account" class="form-label">IBAN :</label>
-                            <textarea class="form-control @error('bank_ account') is-invalid @enderror" id="bank_account" name="bank_account" rows="3">{{ old('bank_account') }}</textarea>
+                            <textarea class="form-control @error('bank_ account') is-invalid @enderror" id="bank_account" name="bank_account" rows="3"></textarea>
                             @error('bank_account')
                                 <span class="invalid-feedback">{{ $message }}</span>
                             @enderror
@@ -70,4 +70,4 @@
     </div>
 </div>
 </x-app-layout>
-{{-- @endsection --}}
+        
