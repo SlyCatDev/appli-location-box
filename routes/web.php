@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BoxController;
 use App\Http\Controllers\TenantController;
+use App\Http\Controllers\ContractModelController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -37,6 +38,17 @@ Route::middleware('auth')->prefix('/tenants')->group(function () {
     Route::get('/{tenant}/edit', [TenantController::class, 'edit'])->name('tenants.edit');
     Route::put('/{tenant}/update', [TenantController::class, 'update'])->name('tenants.update');
     Route::delete('/{tenant}', [TenantController::class, 'destroy'])->name('tenants.destroy');
+});
+
+Route::middleware('auth')->prefix('/contract_models')->group(function () {
+    Route::get('/', [ContractModelController::class, 'index'])->name('contract_models.index');
+    Route::get('/create', [ContractModelController::class, 'create'])->name('contract_models.create');
+    Route::post('/', [ContractModelController::class, 'store'])->name('contract_models.store');
+    // Route::post('/save', [ContractModelController::class, 'save'])->name('contract_models.save');
+    Route::get('/{contract_model}', [ContractModelController::class, 'show'])->name('contract_models.show');
+    Route::get('/{contract_model}/edit', [ContractModelController::class, 'edit'])->name('contract_models.edit');
+    Route::put('/{contract_model}/update', [ContractModelController::class, 'update'])->name('contract_models.update');
+    Route::delete('/{contract_model}', [ContractModelController::class, 'destroy'])->name('contract_models.destroy');
 });
 
 require __DIR__.'/auth.php';
