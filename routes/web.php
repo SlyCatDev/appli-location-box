@@ -61,6 +61,7 @@ Route::middleware('auth')->prefix('/contracts')->group(function () {
     Route::post('/', [ContractController::class, 'store'])->name('contracts.store');
     Route::get('/{contract}', [ContractController::class, 'show'])->name('contracts.show');
     Route::get('/{contract}/edit', [ContractController::class, 'edit'])->name('contracts.edit');
+    //bug sur le update
     Route::put('/{contract}/update', [ContractController::class, 'update'])->name('contracts.update');
     Route::delete('/{contract}', [ContractController::class, 'destroy'])->name('contracts.destroy');
 });
@@ -70,5 +71,6 @@ Route::middleware('auth')->prefix('/bills')->group(function () {
     Route::get('/create', [BillController::class, 'create'])->name('bills.create');
     Route::post('/', [BillController::class, 'store'])->name('bills.store');
 });
+// *commentaire de routes qui ne fonctionne pas*
 
 require __DIR__.'/auth.php';

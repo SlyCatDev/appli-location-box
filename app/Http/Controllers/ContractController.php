@@ -53,6 +53,7 @@ class ContractController extends Controller
             'tenant_id' => $request->tenant_id,
             'user_id' => Auth::id(),
         ]);
+        $contract->contract_model_id = $request->contractModel_id;
         $contract->save();
 
         return redirect()->route('contracts.index')
@@ -60,17 +61,26 @@ class ContractController extends Controller
     }
 
     public function show($id)
-    {
-        $contract = Contract::findOrFail($id);
-        return view('contracts.show', compact('contract'));
-    }  
+{
+    $contract = Contract::findOrFail($id);
+    $contractModel = $contract->model; // Récupère l'objet ContractModel
+    $replacedContent = $this->replaceVariables($contractModel->content, [
+        'nom' => $contract->tenant->name,
+        'date_signature' => $contract->created_at->format('d/m/Y'),
+        'montant' => $contract->monthly_price,
+        'date_debut' => $contract->date_start,
+        'date_fin' => $contract->date_end,
+    ]);
+    return view('contracts.show', compact('contract', 'replacedContent'));
+}
 
     public function edit(Contract $contract)
     {
         $boxes = \App\Models\Box::all();
         $tenants = \App\Models\Tenant::all();
         $users = \App\Models\User::all();
-        return view('contracts.edit', compact('contract', 'boxes', 'tenants', 'users'));
+        $contractModels = ContractModel::all();
+        return view('contracts.edit', compact('contract', 'boxes', 'tenants', 'users' , 'contractModels'));
     }
 
     public function update(Request $request, Contract $contract)
@@ -85,6 +95,8 @@ class ContractController extends Controller
         ]);
 
         $contract->update($request->only(['date_start', 'date_end', 'monthly_price', 'box_id', 'tenant_id']));
+        $contract->contract_model_id = $request->contractModel_id;
+        $contract->save();
 
         return redirect()->route('contracts.index')
             ->with('success', 'Contrat mis à jour avec succès.');

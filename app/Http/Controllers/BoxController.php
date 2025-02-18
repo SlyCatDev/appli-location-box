@@ -59,7 +59,7 @@ class BoxController extends Controller
         $box->name = $request->name;
         $box->contenu = $request->contenu;
         $box->price = $request->price;
-        $box->owner_id = $request->owner_id;
+        $box->owner_id = Auth::id();
         $box->save();
 
         return redirect()->route('boxes.index')

@@ -1,73 +1,70 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            Créer un nouveau locataire associé avec un contrat
+            {{ __('Créer un nouveau locataire') }}
         </h2>
     </x-slot>
 
-{{-- @extends('layouts.app') --}}
+    <div class="max-w-2xl mx-auto mt-6 p-6 bg-white dark:bg-gray-800 shadow-md rounded-lg">
 
-{{-- @section('title', 'Create New Tenant') --}}
+        <div class="mb-4">
+            <a href="{{ route('tenants.index') }}" class="text-blue-600 dark:text-blue-400 hover:underline">
+                ← Retour à la liste des locataires
+            </a>
+        </div>
 
-{{-- @section('content') --}}
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
+        <div class="bg-white dark:bg-gray-800 shadow-md rounded-lg p-6">
+            <form action="{{ route('tenants.store') }}" method="POST">
+                @csrf
 
-                <div class="card-body">
-                    <form action="{{ route('tenants.store') }}" method="POST">
-                        @csrf
-
-                        <div class="mb-3">
-                            <label for="name" class="form-label">Nom :</label>
-                            <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" required>
-                            @error('name')
-                                <span class="invalid-feedback">{{ $message }}</span>
-                            @enderror
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="email" class="form-label">Email :</label>
-                            <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email" required>
-                            @error('email')
-                                <span class="invalid-feedback">{{ $message }}</span>
-                            @enderror
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="phone" class="form-label">Téléphone :</label>
-                            <input type="tel" class="form-control @error('phone') is-invalid @enderror" id="phone" name="phone">
-                            @error('phone')
-                                <span class="invalid-feedback">{{ $message }}</span>
-                            @enderror
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="address" class="form-label">Addresse :</label>
-                            <textarea class="form-control @error('address') is-invalid @enderror" id="address" name="address" rows="3"></textarea>
-                            @error('address')
-                                <span class="invalid-feedback">{{ $message }}</span>
-                            @enderror
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="bank_account" class="form-label">IBAN :</label>
-                            <textarea class="form-control @error('bank_ account') is-invalid @enderror" id="bank_account" name="bank_account" rows="3"></textarea>
-                            @error('bank_account')
-                                <span class="invalid-feedback">{{ $message }}</span>
-                            @enderror
-                        </div>
-
-                        <div class="d-grid gap-2">
-                            <button type="submit" class="btn btn-primary">Ajouter</button>
-                            <a href="{{ route('tenants.index') }}" class="btn btn-secondary">Retour</a>
-                        </div>
-                    </form>
+                <div class="mb-4">
+                    <label for="name" class="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2">Nom :</label>
+                    <input type="text" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-300 leading-tight focus:outline-none focus:shadow-outline @error('name') border-red-500 @enderror" id="name" name="name" required>
+                    @error('name')
+                        <span class="text-red-500 text-xs italic">{{ $message }}</span>
+                    @enderror
                 </div>
-            </div>
+
+                <div class="mb-4">
+                    <label for="email" class="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2">Email :</label>
+                    <input type="email" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-300 leading-tight focus:outline-none focus:shadow-outline @error('email') border-red-500 @enderror" id="email" name="email" required>
+                    @error('email')
+                        <span class="text-red-500 text-xs italic">{{ $message }}</span>
+                    @enderror
+                </div>
+
+                <div class="mb-4">
+                    <label for="phone" class="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2">Téléphone :</label>
+                    <input type="tel" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-300 leading-tight focus:outline-none focus:shadow-outline @error('phone') border-red-500 @enderror" id="phone" name="phone">
+                    @error('phone')
+                        <span class="text-red-500 text-xs italic">{{ $message }}</span>
+                    @enderror
+                </div>
+
+                <div class="mb-4">
+                    <label for="address" class="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2">Adresse :</label>
+                    <textarea class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-300 leading-tight focus:outline-none focus:shadow-outline @error('address') border-red-500 @enderror" id="address" name="address" rows="3"></textarea>
+                    @error('address')
+                        <span class="text-red-500 text-xs italic">{{ $message }}</span>
+                    @enderror
+                </div>
+
+                <div class="mb-4">
+                    <label for="bank_account" class="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2">IBAN :</label>
+                    <textarea class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-300 leading-tight focus:outline-none focus:shadow-outline @error('bank_account') border-red-500 @enderror" id="bank_account" name="bank_account" rows="3"></textarea>
+                    @error('bank_account')
+                        <span class="text-red-500 text-xs italic">{{ $message }}</span>
+                    @enderror
+                </div>
+
+                <div class="flex items-center justify-between">
+                    <button type="submit" 
+                    class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 
+                    focus:outline-none focus:ring-2 focus:ring-green-400">
+                    Ajouter
+                </button>
+                </div>
+            </form>
         </div>
     </div>
-</div>
 </x-app-layout>
-        
