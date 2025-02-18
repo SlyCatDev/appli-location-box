@@ -61,6 +61,7 @@ Route::middleware('auth')->prefix('/contracts')->group(function () {
     Route::post('/', [ContractController::class, 'store'])->name('contracts.store');
     Route::get('/{contract}', [ContractController::class, 'show'])->name('contracts.show');
     Route::get('/{contract}/edit', [ContractController::class, 'edit'])->name('contracts.edit');
+    //bug sur le update
     Route::put('/{contract}/update', [ContractController::class, 'update'])->name('contracts.update');
     Route::delete('/{contract}', [ContractController::class, 'destroy'])->name('contracts.destroy');
 });
