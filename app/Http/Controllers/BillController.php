@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\Models\Bill;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Contract;
+use Carbon\Carbon;
+
+Carbon::setLocale('fr');
 
 class BillController extends Controller
 {
@@ -26,26 +29,29 @@ class BillController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            'paiement_montant' => 'required|numeric',
-            'payment_date' => 'required|date',
-            'period_number' => 'required|integer',
-            'contract_id' => 'required|exists:contracts,id',
-        ]);
+        // On récupère la date d'aujourd'hui
+        $today = Carbon::today()->toDateString();
 
-        $bill = new Bill($request->all());
-        $bill->contract_id = $request->contract_id;
-        $bill->save();
+        // Récupérer les contrats en cours qui n'ont pas encore de facture
+        $contracts = Contract::where('date_start', '<=', $today)
+                         ->where('date_end', '>=', $today)
+                         ->whereDoesntHave('bills')
+                         ->get();
 
+        foreach ($contracts as $contract) {
+            
+            $startDate = Carbon::parse($contract->date_start);
+            $periodNumber = $startDate->diffInMonths($today) + 1;
+
+            $bill = new Bill();
+            $bill->paiement_montant = $request->paiement_montant;
+            $bill->payment_date = $request->payment_date;
+            $bill->period_number = $periodNumber;
+            $bill->contract_id = $contract->id;
+            $bill->save();
+        }
+        
         return redirect()->route('bills.index')
             ->with('success', 'Bill created successfully.');
-    }
-
-    public function destroy(Bill $bill)
-    {
-        $bill->delete();
-
-        return redirect()->route('bills.index')
-            ->with('success', 'Bill deleted successfully.');
     }
 }
