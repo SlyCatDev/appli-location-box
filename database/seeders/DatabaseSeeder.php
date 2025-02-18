@@ -30,7 +30,7 @@ class DatabaseSeeder extends Seeder
         ]);
         Box::factory(10)->create();
         Tenant::factory(10)->create();
-        // ContractModel::factory()->create();
+        // ContractModel::factory(10)->create();
         Contract::factory(10)->create();
         Bill::factory(10)->create();
 

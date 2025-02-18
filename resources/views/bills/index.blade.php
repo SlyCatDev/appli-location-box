@@ -11,7 +11,7 @@
             <tr>
                 <th>Montant du paiement</th>
                 <th>Date de paiement</th>
-                <th>Période de paiement</th>
+                <th>Délai de paiement</th>
                 <th>Numéro de contrat</th>
                 <th>Actions</th>
             </tr>

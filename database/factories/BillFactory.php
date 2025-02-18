@@ -20,7 +20,7 @@ class BillFactory extends Factory
             'paiement_montant' => $this->faker->randomFloat(2, 1, 99999999),
             'payment_date' => $this->faker->date(),
             'period_number' => $this->faker->randomNumber(2),
-            'contract_id' => \App\Models\Contract::factory(),
+            'contract_id' => 1,
         ];
     }
 }

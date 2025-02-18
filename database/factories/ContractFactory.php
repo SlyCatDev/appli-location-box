@@ -17,12 +17,12 @@ class ContractFactory extends Factory
     public function definition(): array
     {
         return [
-            'date_start' => $this->faker->date(),
-            'date_end' => $this->faker->date(),
+            'date_start' => $dateStart = $this->faker->date(),
+            'date_end' => $this->faker->dateTimeBetween($dateStart, '+1 year')->format('Y-m-d'),
             'monthly_price' => $this->faker->randomFloat(2, 0, 9999),
             'box_id' => \App\Models\Box::factory(),
             'tenant_id' => \App\Models\Tenant::factory(),
-            'user_id' => \App\Models\User::factory(),
+            'user_id' => 1,
         ];
     }
 }

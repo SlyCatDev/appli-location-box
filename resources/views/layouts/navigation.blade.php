@@ -27,6 +27,9 @@
                     <x-nav-link :href="route('contracts.index')" :active="request()->routeIs('contracts.index')">
                         {{ __('Contrats') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('bills.index')" :active="request()->routeIs('bills.index')">
+                        {{ __('Factures') }}
+                    </x-nav-link>
                 </div>
             </div>
 
@@ -93,6 +96,9 @@
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('contracts.index')" :active="request()->routeIs('contracts.index')">
                 {{ __('Contrats') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('bills.index')" :active="request()->routeIs('bills.index')">
+                {{ __('Factures') }}
             </x-responsive-nav-link>
         </div>
 

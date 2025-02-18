@@ -28,7 +28,7 @@
             <input type="date" class="form-control" id="payment_date" name="payment_date" required>
         </div>
         <div class="form-group">
-            <label for="period_number">Période de paiement:</label>
+            <label for="period_number">Délai de paiement:</label>
             <input type="number" class="form-control" id="period_number" name="period_number" required>
         </div>
         <div class="form-group">

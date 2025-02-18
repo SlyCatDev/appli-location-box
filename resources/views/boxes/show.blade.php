@@ -21,8 +21,7 @@
                     <td>{{ $box->id }}</td>
                     <td>{{ $box->name }}</td>
                     <td>{{ $box->contenu }}</td>
-                    <td>{{ $box->price }}</td>
-                    <td>{{ $box->user->name}}</td>             
+                    <td>{{ $box->price }}</td>            
                 </tr>
             </tbody>
         </table>

@@ -5,11 +5,6 @@
         </h2>
     </x-slot>
 
-{{-- @extends('layouts.app') --}}
-
-{{-- @section('title', 'Create New Box') --}}
-
-{{-- @section('content') --}}
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
@@ -43,4 +38,3 @@
         </div>
     </div>
 </x-app-layout>
-{{-- @endsection --}}

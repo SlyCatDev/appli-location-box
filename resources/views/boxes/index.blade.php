@@ -13,7 +13,7 @@
                     <th>Nom de la Box</th>
                     <th>Contenu</th>
                     <th>Prix</th>
-                    <th>Créateur</th>
+                    <th>Propriétaire</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -24,7 +24,6 @@
                     <td>{{ $box->name }}</td>
                     <td>{{ $box->contenu }}</td>
                     <td>{{ $box->price }}</td>
-                    <td>{{ $box->owner ? $box->owner->name : 'Owner not found' }}</td>
                     <td>
                         <a href="{{ route('boxes.show', $box->id) }}">Voir</a>
                         <a href="{{ route('boxes.edit', $box->id) }}">Éditer</a>
