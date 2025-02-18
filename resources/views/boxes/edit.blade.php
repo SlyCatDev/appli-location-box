@@ -1,69 +1,71 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            Editer une box
+            {{ __('Éditer un box') }}
         </h2>
     </x-slot>
+    
+    <div class="max-w-2xl mx-auto mt-6 p-6 bg-white dark:bg-gray-800 shadow-md rounded-lg">
 
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-body">
-                        <form action="{{ route('boxes.update', $box->id) }}" method="POST">
-                            @csrf
-                            @method('PUT')
-
-                            <div class="form-group row mb-3">
-                                <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Nom') }}</label>
-                                <div class="col-md-6">
-                                    <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name', $box->name) }}" required autofocus>
-                                    @error('name')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="form-group row mb-3">
-                                <label for="contenu" class="col-md-4 col-form-label text-md-right">{{ __('Contenu') }}</label>
-                                <div class="col-md-6">
-                                    <textarea id="contenu" class="form-control @error('contenu') is-invalid @enderror" name="contenu" required>{{ old('contenu', $box->contenu) }}</textarea>
-                                    @error('contenu')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="form-group row mb-3">
-                                <label for="price" class="col-md-4 col-form-label text-md-right">{{ __('Prix') }}</label>
-                                <div class="col-md-6">
-                                    <input id="price" type="text" class="form-control @error('price') is-invalid @enderror" name="price" value="{{ old('price', $box->price) }}" required>
-                                    @error('price')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="form-group row mb-0">
-                                <div class="col-md-6 offset-md-4">
-                                    <button type="submit" class="btn btn-primary">
-                                        {{ __('Appliquer la modification') }}
-                                    </button>
-                                    <a href="{{ route('boxes.index') }}" class="btn btn-secondary">
-                                        {{ __('Retour') }}
-                                    </a>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
+            <div class="mb-4">
+                <a href="{{ route('boxes.index') }}" class="text-blue-600 dark:text-blue-400 hover:underline">
+                    ← Retour à la liste des boxes
+                </a>
             </div>
+            
+            <form action="{{ route('boxes.update', $box->id) }}" method="POST" class="space-y-4">
+                @csrf
+                @method('PUT')
+    
+                {{-- Nom --}}
+                <div>
+                    <label for="name" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Nom :</label>
+                    <input id="name" type="text" name="name" value="{{ old('name', $box->name) }}" 
+                        class="mt-1 block w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-lg shadow-sm 
+                        focus:ring-blue-500 focus:border-blue-500 text-gray-900 dark:text-white bg-gray-50 dark:bg-gray-900" 
+                        required autofocus>
+                    @error('name')
+                        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                    @enderror
+                </div>
+    
+                {{-- Contenu --}}
+                <div>
+                    <label for="contenu" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Contenu :</label>
+                    <textarea id="contenu" name="contenu" rows="3"
+                        class="mt-1 block w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-lg shadow-sm 
+                        focus:ring-blue-500 focus:border-blue-500 text-gray-900 dark:text-white bg-gray-50 dark:bg-gray-900"
+                        required>{{ old('contenu', $box->contenu) }}</textarea>
+                    @error('contenu')
+                        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                    @enderror
+                </div>
+    
+                {{-- Prix/mois --}}
+                <div>
+                    <label for="price" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Prix/mois :</label>
+                    <input id="price" type="number" step="any" name="price" value="{{ old('price', $box->price) }}"
+                        class="mt-1 block w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-lg shadow-sm 
+                        focus:ring-blue-500 focus:border-blue-500 text-gray-900 dark:text-white bg-gray-50 dark:bg-gray-900"
+                        required>
+                    @error('price')
+                        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                    @enderror
+                </div>
+    
+                {{-- Boutons --}}
+                <div class="flex justify-between">
+                    <a href="{{ route('boxes.index') }}" 
+                        class="px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 
+                        focus:outline-none focus:ring-2 focus:ring-gray-400">
+                        Retour
+                    </a>
+                    <button type="submit" 
+                        class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 
+                        focus:outline-none focus:ring-2 focus:ring-blue-400">
+                        Appliquer la modification
+                    </button>
+                </div>
+            </form>
         </div>
-    </div>
 </x-app-layout>

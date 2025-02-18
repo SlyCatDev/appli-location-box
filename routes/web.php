@@ -28,10 +28,7 @@ Route::middleware('auth')->prefix('/boxes')->group(function () {
     Route::get('/create', [BoxController::class, 'create'])->name('boxes.create');
     Route::post('/', [BoxController::class, 'store'])->name('boxes.store');
     Route::get('/{box}', [BoxController::class, 'show'])->name('boxes.show');
-
-    //marche pas
     Route::get('/{box}/edit', [BoxController::class, 'edit'])->name('boxes.edit');
-
     Route::put('/{box}/update', [BoxController::class, 'update'])->name('boxes.update');
     Route::delete('/{box}', [BoxController::class, 'destroy'])->name('boxes.destroy');
 });
@@ -62,16 +59,12 @@ Route::middleware('auth')->prefix('/contracts')->group(function () {
     Route::get('/', [ContractController::class, 'index'])->name('contracts.index');
     Route::get('/create', [ContractController::class, 'create'])->name('contracts.create');
     Route::post('/', [ContractController::class, 'store'])->name('contracts.store');
-    // marche pas
     Route::get('/{contract}', [ContractController::class, 'show'])->name('contracts.show');
-    // marche pas
     Route::get('/{contract}/edit', [ContractController::class, 'edit'])->name('contracts.edit');
     Route::put('/{contract}/update', [ContractController::class, 'update'])->name('contracts.update');
-    // marche pas sur numéro de contrat id 1
     Route::delete('/{contract}', [ContractController::class, 'destroy'])->name('contracts.destroy');
 });
 
-// marche pas + seed database 
 Route::middleware('auth')->prefix('/bills')->group(function () {
     Route::get('/', [BillController::class, 'index'])->name('bills.index');
     Route::get('/create', [BillController::class, 'create'])->name('bills.create');

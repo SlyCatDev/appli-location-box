@@ -1,105 +1,91 @@
-{{-- @extends('layouts.app') --}}
-
-{{-- @section('content') --}}
-
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            Editer un locataire
+            {{ __('Modifier un locataire') }}
         </h2>
     </x-slot>
 
-<div class="container">
-    @if (session('success'))
-        <div class="alert alert-success">
-            {{ session('success') }}
+    <div class="max-w-2xl mx-auto mt-6 p-6 bg-white dark:bg-gray-800 shadow-md rounded-lg">
+
+        <div class="mb-4">
+            <a href="{{ route('boxes.index') }}" class="text-blue-600 dark:text-blue-400 hover:underline">
+                ← Retour à la liste des locataires
+            </a>
         </div>
-    @endif
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
 
-                <div class="card-body">
-                    <form action="{{ route('tenants.update', $tenant->id) }}" method="POST">
-                        @csrf
-                        @method('PUT')
+        <form action="{{ route('tenants.update', $tenant->id) }}" method="POST">
+            @csrf
+            @method('PUT')
 
-                        <div class="form-group row mb-3">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
-                            <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name', $tenant->name) }}" required autofocus>
-                                @error('name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {{-- Nom --}}
+                <div>
+                    <label for="name" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Nom</label>
+                    <input id="name" type="text" name="name" value="{{ old('name', $tenant->name) }}" 
+                        class="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:ring-blue-500 focus:border-blue-500 @error('name') @enderror" 
+                        required autofocus>
+                    @error('name')
+                        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                    @enderror
+                </div>
 
-                        <div class="form-group row mb-3">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Email') }}</label>
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email', $tenant->email) }}" required>
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
+                {{-- Email --}}
+                <div>
+                    <label for="email" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Email</label>
+                    <input id="email" type="email" name="email" value="{{ old('email', $tenant->email) }}" 
+                        class="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:ring-blue-500 focus:border-blue-500 @error('email') @enderror" 
+                        required>
+                    @error('email')
+                        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                    @enderror
+                </div>
 
-                        <div class="form-group row mb-3">
-                            <label for="phone" class="col-md-4 col-form-label text-md-right">{{ __('Phone') }}</label>
-                            <div class="col-md-6">
-                                <input id="phone" type="text" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone', $tenant->phone) }}" required>
-                                @error('phone')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="form-group row mb-3">
-                            <label for="address" class="col-md-4 col-form-label text-md-right">{{ __('Addresse') }}</label>
-                            <div class="col-md-6">
-                                <input id="address" type="text" class="form-control @error('address') is-invalid @enderror" name="address" value="{{ old('address', $tenant->address) }}" required>
-                                @error('address')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
+                {{-- Téléphone --}}
+                <div>
+                    <label for="phone" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Téléphone</label>
+                    <input id="phone" type="text" name="phone" value="{{ old('phone', $tenant->phone) }}" 
+                        class="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:ring-blue-500 focus:border-blue-500 @error('phone') @enderror" 
+                        required>
+                    @error('phone')
+                        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                    @enderror
+                </div>
 
-                        <div class="form-group row mb-3">
-                            <label for="bank_account" class="col-md-4 col-form-label text-md-right">{{ __('bank_account') }}</label>
-                            <div class="col-md-6">
-                                <input id="bank_account" type="text" class="form-control @error('bank_account') is-invalid @enderror" name="bank_account" value="{{ old('bank_account', $tenant->bank_account) }}" required>
-                                @error('bank_account')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
+                {{-- Adresse --}}
+                <div>
+                    <label for="address" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Adresse</label>
+                    <input id="address" type="text" name="address" value="{{ old('address', $tenant->address) }}" 
+                        class="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:ring-blue-500 focus:border-blue-500 @error('address') @enderror" 
+                        required>
+                    @error('address')
+                        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                    @enderror
+                </div>
 
-
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Appliquer la modification') }}
-                                </button>
-                                <a href="{{ route('tenants.index') }}" class="btn btn-secondary">
-                                    {{ __('Retour') }}
-                                </a>
-                            </div>
-                        </div>
-                    </form>
+                {{-- Compte bancaire --}}
+                <div class="md:col-span-2">
+                    <label for="bank_account" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Compte Bancaire</label>
+                    <input id="bank_account" type="text" name="bank_account" value="{{ old('bank_account', $tenant->bank_account) }}" 
+                        class="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:ring-blue-500 focus:border-blue-500 @error('bank_account') border-red-500 @enderror" 
+                        required>
+                    @error('bank_account')
+                        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                    @enderror
                 </div>
             </div>
-        </div>
+
+            {{-- Boutons --}}
+            <div class="mt-6 flex justify-end space-x-4">
+                <a href="{{ route('tenants.index') }}" 
+                    class="px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 focus:ring-2 focus:ring-gray-400">
+                    Annuler
+                </a>
+                <button type="submit" 
+                    class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:ring-2 focus:ring-blue-400">
+                    Appliquer la modification
+                </button>
+            </div>
+
+        </form>
     </div>
-</div>
 </x-app-layout>
-{{-- @endsection --}}

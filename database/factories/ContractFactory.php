@@ -22,6 +22,7 @@ class ContractFactory extends Factory
             'monthly_price' => $this->faker->randomFloat(2, 0, 9999),
             'box_id' => \App\Models\Box::factory(),
             'tenant_id' => \App\Models\Tenant::factory(),
+            'contract_model_id' => \App\Models\ContractModel::factory(),
             'user_id' => 1,
         ];
     }

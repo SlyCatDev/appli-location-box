@@ -7,28 +7,33 @@
 
     <link href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css" rel="stylesheet" />
 
-    <div class="container">
-        <form action="{{ route('contract_models.store') }}" method="POST" id="editor-form">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <form action="{{ route('contract_models.store') }}" method="POST" id="editor-form"
+              class="bg-white dark:bg-gray-800 shadow-md rounded-lg p-6">
             @csrf
-            <div class="form-group">
-                <label for="name">Nom du modèle</label>
-                <input type="text" name="name" id="name" required>
+            <div class="mb-4">
+                <label for="name" class="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2">Nom du modèle</label>
+                <input type="text" name="name" id="name" required
+                       class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-300 leading-tight focus:outline-none focus:shadow-outline @error('name') border-red-500 @enderror">
                 @error('name')
-                    <div class="alert alert-danger">{{ $message }}</div>
+                    <div class="text-red-500 text-xs italic">{{ $message }}</div>
                 @enderror
             </div>
-    
+
             <!-- Create the editor container -->
-            <div id="editor"></div>
-    
+            <div id="editor" class="mb-4 bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md"></div>
+
             <!-- Champ caché pour le JSON généré par l'éditeur-->
             <input type="hidden" name="content" id="content">
 
             @error('content')
-                <div class="alert alert-danger">{{ $message }}</div>
+                <div class="text-red-500 text-xs italic">{{ $message }}</div>
             @enderror
-    
-            <button type="submit">Créer le modèle</button>
+
+            <button type="submit"
+                    class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                Créer le modèle
+            </button>
         </form>
     </div>
 
@@ -37,12 +42,13 @@
 
     <!-- Initialize Quill editor -->
     <script>
-    const quill = new Quill('#editor', {
-        theme: 'snow'
-    });
+        const quill = new Quill('#editor', {
+            theme: 'snow'
+        });
+
         document.getElementById('editor-form').addEventListener('submit', function (e) {
-                const content = document.getElementById('content');
-                content.value = quill.root.innerHTML;
-            });
+            const content = document.getElementById('content');
+            content.value = quill.root.innerHTML;
+        });
     </script>
 </x-app-layout>
