@@ -5,11 +5,6 @@
         </h2>
     </x-slot>
 
-{{-- @extends('layouts.app') --}}
-
-{{-- @section('title', 'Create New Box') --}}
-
-{{-- @section('content') --}}
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
@@ -20,7 +15,7 @@
                         @csrf
 
                         <div class="form-group">
-                            <label for="name">Nom : </label>
+                            <label for="name">Nom :</label>
                             <input type="text" name="name" class="form-control" required autofocus>
                         </div>
                         <div class="form-group">
@@ -28,7 +23,7 @@
                             <textarea name="contenu" class="form-control"></textarea>
                         </div>
                         <div class="form-group">
-                            <label for="contenu">Prix :</label>
+                            <label for="contenu">Prix/mois :</label>
                             <textarea name="price" class="form-control"></textarea>
                         </div>
 
@@ -43,4 +38,3 @@
         </div>
     </div>
 </x-app-layout>
-{{-- @endsection --}}

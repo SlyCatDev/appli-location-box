@@ -69,7 +69,6 @@ Route::middleware('auth')->prefix('/bills')->group(function () {
     Route::get('/', [BillController::class, 'index'])->name('bills.index');
     Route::get('/create', [BillController::class, 'create'])->name('bills.create');
     Route::post('/', [BillController::class, 'store'])->name('bills.store');
-    Route::delete('/{bill}', [BillController::class, 'destroy'])->name('bills.destroy');
 });
 
 require __DIR__.'/auth.php';

@@ -19,6 +19,14 @@
 
     <form action="{{ route('contracts.store') }}" method="POST">
         @csrf
+
+        <select name="contractModel_id" required>
+            <option value="">Sélectionner un modèle</option>
+            @foreach ($contractModels as $model)
+                <option value="{{ $model->id }}">{{ $model->name }}</option>
+            @endforeach
+        </select>
+
         <div class="form-group">
             <label for="date_start">Date de début de contrat</label>
             <input type="date" class="form-control" id="date_start" name="date_start" required>
@@ -28,11 +36,11 @@
             <input type="date" class="form-control" id="date_end" name="date_end" required>
         </div>
         <div class="form-group">
-            <label for="monthly_price">Prix par mois</label>
+            <label for="monthly_price">Prix/mois</label>
             <input type="number" class="form-control" id="monthly_price" name="monthly_price" required>
         </div>
         <div class="form-group">
-            <label for="box_id">Nom du Box</label>
+            <label for="box_id">Nom de la Box</label>
             <select type="number" class="form-control" id="box_id" name="box_id" required>
                 @foreach ($boxes as $box)
                     <option value="{{ $box->id }}">{{ $box->name }}</option>
@@ -47,14 +55,7 @@
                 @endforeach
             </select>
         </div>
-        <div class="form-group">
-            <label for="user_id">Nom de l'utilisateur</label>
-            <select type="number" class="form-control" id="user_id" name="user_id" required>
-                @foreach ($users as $user)
-                    <option value="{{ $user->id }}">{{ $user->name }}</option>
-                @endforeach
-            </select>
-        </div>
+        
         <button type="submit" class="btn btn-primary">Créer un Contrat</button>
     </form>
 </div>

@@ -5,6 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\ContractModel;
 use App\Models\Contract;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Tenant;
+use App\Models\Box;
+use App\Models\User;
+use App\Models\Bill;
 
 class ContractModelController extends Controller
 {
@@ -25,7 +30,6 @@ class ContractModelController extends Controller
             'name'    => 'required|string|max:255',
             'content' => 'required|string',
         ]);
-
         $contractModel = new ContractModel();
         $contractModel->name    = $request->name;
         $contractModel->content = $request->content;
@@ -64,60 +68,13 @@ class ContractModelController extends Controller
 
     public function destroy(ContractModel $contractModel)
     {
+        if ($contractModel->contracts()->count() > 0) {
+            return redirect()->route('contract_models.index')
+                ->with('error', 'Impossible de supprimer ce modèle car il est utilisé par des contrats.');
+        }
         $contractModel->delete();
 
         return redirect()->route('contract_models.index')
             ->with('success', 'Model deleted successfully');
-    }
-    /**
-     * Prépare la génération du contrat.
-     * Extrait les variables du modèle (exemple : {nom}, {prenom}, {adresse})
-     * et affiche un formulaire pour que l'utilisateur saisisse les valeurs.
-     */
-    public function prepareGeneration($id)
-    {
-        $contractModel = ContractModel::findOrFail($id);
-
-        // Extraction des variables du template, par exemple {nom}, {prenom}, etc.
-        preg_match_all('/\{(\w+)\}/', $contractModel->content, $matches);
-        $variables = array_unique($matches[1]);
-
-        return view('contract_models.prepare', compact('contractModel', 'variables'));
-    }
-
-    /**
-     * Génère le contrat final en remplaçant les variables par les valeurs saisies.
-     * Le contrat généré est sauvegardé dans la table contracts.
-     */
-    public function generate(Request $request, $id)
-    {
-        $contractModel = ContractModel::findOrFail($id);
-
-        // Extraction des variables
-        preg_match_all('/\{(\w+)\}/', $contractModel->content, $matches);
-        $variables = array_unique($matches[1]);
-
-        // Vérifie que toutes les variables ont bien une valeur saisie
-        foreach ($variables as $variable) {
-            if (!$request->has($variable)) {
-                return redirect()->back()->with('error', "La valeur pour {$variable} est manquante.");
-            }
-        }
-
-        // Remplacement des variables par leurs valeurs
-        $finalContent = $contractModel->content;
-        foreach ($variables as $variable) {
-            $value = $request->input($variable);
-            $finalContent = str_replace("{{$variable}}", $value, $finalContent);
-        }
-
-        // Création du contrat final (n'oublie pas d'ajouter les champs supplémentaires si nécessaire)
-        $contract = new Contract();
-        $contract->content = $finalContent;
-        $contract->user_id = auth()->id();
-        $contract->save();
-
-        return redirect()->route('contracts.show', $contract->id)
-            ->with('success', 'Contrat généré avec succès.');
     }
 }

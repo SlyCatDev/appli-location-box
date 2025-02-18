@@ -12,8 +12,8 @@
                     <th>ID Box</th>
                     <th>Nom de la Box</th>
                     <th>Contenu</th>
-                    <th>Prix</th>
-                    <th>Créateur</th>
+                    <th>Prix/mois</th>
+                    <th>Propriétaire</th>
                 </tr>
             </thead>
             <tbody>
@@ -21,8 +21,7 @@
                     <td>{{ $box->id }}</td>
                     <td>{{ $box->name }}</td>
                     <td>{{ $box->contenu }}</td>
-                    <td>{{ $box->price }}</td>
-                    <td>{{ $box->user->name}}</td>             
+                    <td>{{ $box->price }}</td>            
                 </tr>
             </tbody>
         </table>

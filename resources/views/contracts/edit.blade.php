@@ -21,6 +21,13 @@
         @csrf
         @method('PUT')
 
+        <select name="contractModel_id" required>
+            <option value="">Sélectionner un modèle</option>
+            @foreach ($contractModels as $model)
+                <option value="{{ $model->id }}">{{ $model->name }}</option>
+            @endforeach
+        </select>
+
         <div class="form-group">
             <label for="date_start">Date de début de contrat</label>
             <input type="date" class="form-control" id="date_start" name="date_start" value="{{ old('date_start', $contract->date_start) }}" required>

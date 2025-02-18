@@ -17,10 +17,10 @@ class BillFactory extends Factory
     public function definition(): array
     {
         return [
-            'paiement_montant' => $this->faker->randomFloat(2, 1, 99999999),
-            'payment_date' => $this->faker->date(),
+            'paiement_montant' => $this->faker->randomFloat(2, 1, 999),
+            'payment_date' => $this->faker->optional()->date(),
             'period_number' => $this->faker->randomNumber(2),
-            'contract_id' => \App\Models\Contract::factory(),
+            'contract_id' => 1,
         ];
     }
 }

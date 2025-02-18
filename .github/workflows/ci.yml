@@ -26,4 +26,5 @@ jobs:
             git pull
             echo "Running migrations..."
             php artisan migrate --force
+            php artisan db:seed --force
             echo "Deployment completed."

@@ -5,41 +5,38 @@
         </h2>
     </x-slot>
 
-<div class="container">
+    <div class="container">
+        <a href="{{ route('bills.index') }}">Retour à la liste des factures</a>
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+    
+        <form action="{{ route('bills.store') }}" method="POST">
+            @csrf
 
-    @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
+            <div class="form-group">
+                <label for="paiement_montant">Montant du paiement</label>
+                <input type="number" name="paiement_montant" id="paiement_montant" class="form-control" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="payment_date">Date de paiement</label>
+                <input type="date" name="payment_date" id="payment_date" class="form-control" required>
+            </div>
 
-    <form action="{{ route('bills.store') }}" method="POST">
-        @csrf
-        <div class="form-group">
-            <label for="paiement_montant">Montant du paiement:</label>
-            <input type="text" class="form-control" id="paiement_montant" name="paiement_montant" required>
-        </div>
-        <div class="form-group">
-            <label for="payment_date">Date de paiement:</label>
-            <input type="date" class="form-control" id="payment_date" name="payment_date" required>
-        </div>
-        <div class="form-group">
-            <label for="period_number">Période de paiement:</label>
-            <input type="number" class="form-control" id="period_number" name="period_number" required>
-        </div>
-        <div class="form-group">
-            <label for="contract_id">Numéro de contrat</label>
-            <select class="form-control" id="contract_id" name="contract_id" required>
-                @foreach($contracts as $contract)
-                    <option value="{{ $contract->id }}">{{ $contract->name }}</option>
-                @endforeach
-            </select>
-        </div>
-        <button type="submit" class="btn btn-primary">Créer</button>
-    </form>
-</div>
+            {{-- <div>
+                <label for="period_number">Période de paiement</label>
+                <input type="number" name="period_number" id="period_number" class="form-control" required>
+            </div> --}}
+
+            <button type="submit" class="btn btn-primary">Générer les factures</button>
+        </form>
+    </div>
+    
 </x-app-layout>
