@@ -27,7 +27,6 @@ class BoxController extends Controller
             'name' => 'required|string|max:255',
             'contenu' => 'nullable|string',
             'price' => 'required|numeric',
-            'owner_id' => 'required',
 
         ]);
 
@@ -55,7 +54,6 @@ class BoxController extends Controller
             'name' => 'required|string|max:255',
             'contenu' => 'nullable|string',
             'price' => 'required|numeric',
-            'owner_id' => 'required',
         ]);
 
         $box->name = $request->name;
