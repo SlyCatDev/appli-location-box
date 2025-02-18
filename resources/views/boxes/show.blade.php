@@ -12,8 +12,8 @@
                     <th>ID Box</th>
                     <th>Nom de la Box</th>
                     <th>Contenu</th>
-                    <th>Prix</th>
-                    <th>Créateur</th>
+                    <th>Prix/mois</th>
+                    <th>Propriétaire</th>
                 </tr>
             </thead>
             <tbody>

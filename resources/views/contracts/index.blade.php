@@ -9,6 +9,7 @@
         <table>
             <thead>
                 <tr>
+                    <th>Numéro de contrat</th>
                     <th>Date de début de contrat</th>
                     <th>Date de fin de contrat</th>
                     <th>Prix par mois</th>
@@ -21,6 +22,7 @@
             <tbody>
                 @foreach ($contracts as $contract)
                 <tr>
+                    <td>{{ $contract->id }}</td>
                     <td>{{ $contract->date_start }}</td>
                     <td>{{ $contract->date_end }}</td>
                     <td>{{ $contract->monthly_price }}</td>

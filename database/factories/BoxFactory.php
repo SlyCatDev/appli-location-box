@@ -26,7 +26,7 @@ class BoxFactory extends Factory
         return [
             'name' => $this->faker->name(),
             'contenu' => $this->faker->sentence(),
-            'price' => $this->faker->randomFloat(2, 1, 99999999),
+            'price' => $this->faker->randomFloat(2, 20, 500),
             'owner_id' => 1,
         ];
     }

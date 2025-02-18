@@ -11,9 +11,8 @@
             <tr>
                 <th>Montant du paiement</th>
                 <th>Date de paiement</th>
-                <th>Délai de paiement</th>
+                <th>Période de paiement</th>
                 <th>Numéro de contrat</th>
-                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -23,13 +22,6 @@
                 <td>{{ $bill->payment_date }}</td>
                 <td>{{ $bill->period_number }}</td>
                 <td>{{ $bill->contract->id }}</td>
-                <td>         
-                    <form action="{{ route('bills.destroy', $bill->id) }}" method="POST" style="display:inline;">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-danger">Supprimer</button>
-                    </form>
-                </td>
             </tr>
             @endforeach
         </tbody>
