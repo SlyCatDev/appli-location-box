@@ -40,6 +40,7 @@ Route::middleware('auth')->prefix('/tenants')->group(function () {
     Route::get('/{tenant}', [TenantController::class, 'show'])->name('tenants.show');
     Route::get('/{tenant}/edit', [TenantController::class, 'edit'])->name('tenants.edit');
     Route::put('/{tenant}/update', [TenantController::class, 'update'])->name('tenants.update');
+    // bug sur le delete sur certains locataires qui ont un contrat
     Route::delete('/{tenant}', [TenantController::class, 'destroy'])->name('tenants.destroy');
 });
 
